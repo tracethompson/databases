@@ -13,8 +13,9 @@ module.exports = {
   messages: {
     // a function which handles a get request for all messages
     get: function (req, res) {
+      console.log("HI")
       models.messages.get(function(results){
-        res.writeHead(200, {'Content-Type': 'application/json'});
+        // res.writeHead(200, {'Content-Type': 'application/json'});
         res.json(results);
       }); 
     }, 

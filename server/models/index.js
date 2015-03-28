@@ -13,9 +13,9 @@ module.exports = {
 
     }, // a function which produces all the messages
 
-    post: function (callback, params) {
+    post: function (params, callback) {
       //add messages
-      var queryCommand = 'insert into messages(text) value ???'
+      var queryCommand = 'insert into messages(text) values(?)'
       //fetch users
       db.query(queryCommand, function(error, results, fields) {
         if(error) throw error;
@@ -31,16 +31,19 @@ module.exports = {
       var queryCommand = 'Select * FROM users'
       //fetch users
       db.query(queryCommand, function(error, results, fields) {
-        if(error) throw error;
+      if(error) throw error;
         callback(results)
       })
     },
-    post: function (parameter, callback) {
+    post: function (params, callback) {
       //add user
-      var queryCommand = 'insert into users(userName) values ??' 
-      db.query(queryCommand, function(error, results, fields) {
-        if(error) throw error;
+      console.log("params: ", params);
+      var queryCommand = "INSERT into users(user_name) SET(?)"
+      console.log("post: ", post);
+      db.query(queryCommand, params, function(error, results) {
+        // use params to format json into sql
         callback(results)
+        // if(error) throw error;
       })
     }
   }

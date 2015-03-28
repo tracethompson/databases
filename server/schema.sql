@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS `users`;
     
 CREATE TABLE `users` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `userName` VARCHAR(100) NOT NULL,
+  `user_name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE `messages` (
   `author` INT NOT NULL,
   `room` INT NOT NULL,
   `text` VARCHAR(120) NOT NULL,
-  `created_at` DATETIME NOT NULL,
+  `created_at` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );
 
@@ -47,14 +47,14 @@ DROP TABLE IF EXISTS `rooms`;
     
 CREATE TABLE `rooms` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `roomName` VARCHAR(100) NOT NULL,
+  `room_name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`)
 );
 -- ---
 -- Foreign Keys 
 -- ---
-ALTER TABLE `messages` ADD FOREIGN KEY (author) REFERENCES users(`id`);
-ALTER TABLE `messages` ADD FOREIGN KEY (room) REFERENCES rooms(`id`);
+-- ALTER TABLE `messages` ADD FOREIGN KEY (author) REFERENCES users(`id`);
+-- ALTER TABLE `messages` ADD FOREIGN KEY (room) REFERENCES rooms(`id`);
 
 -- ---
 -- Table Properties
@@ -68,10 +68,10 @@ ALTER TABLE `messages` ADD FOREIGN KEY (room) REFERENCES rooms(`id`);
 -- Test Data
 -- ---
 
-INSERT INTO `users` (`id`,`userName`) VALUES
-('1','trace');
--- INSERT INTO `messages` (`id`,`author`,`room`,`text`,`created_at`) VALUES
--- ('1','2','room','hi');
+-- INSERT INTO `users` (`user_name`) VALUES
+-- ('trace');
+-- INSERT INTO `messages` (`author`,`room`,`text`,) VALUES
+-- ('1','2','hi');
 -- INSERT INTO `rooms` (`id`,`roomName`) VALUES
 -- ('1','test');
 
